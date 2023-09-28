@@ -67,4 +67,26 @@ d3.json(queryUrl).then(function (data) {
       }).bindPopup(`<h3>${featureData[i].properties.title}</h3><hr><p>${new Date(featureData[i].properties.time)}</p><p>Depth: ${coordinates[2]}</p>`).addTo(myMap);
     }
 
+
+    //Example for a legend used as a basis for this legend
+    //https://codepen.io/haakseth/pen/KQbjdO
+    var legend = L.control({ position: 'bottomright' });
+
+    legend.onAdd = function(myMap) {
+      var div = L.DomUtil.create("div", "legend");
+      //Use the colors used in markerFill() function
+      div.innerHTML += '<i style="background: #9BD770"></i><span>>10</span><br>';
+      div.innerHTML += '<i style="background: #F1F791"></i><span>10-30</span><br>';
+      div.innerHTML += '<i style="background: #FDE281"></i><span>30-50</span><br>';
+      div.innerHTML += '<i style="background: #E9B701"></i><span>50-70</span><br>';
+      div.innerHTML += '<i style="background: #E48D0C"></i><span>70-90</span><br>';
+      div.innerHTML += '<i style="background: #950E17"></i><span>90+</span><br>';
+      
+      
+
+      return div;
+};
+//Add the legend to map
+legend.addTo(myMap);
+
 });
